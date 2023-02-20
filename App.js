@@ -1,11 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Auth from "./src/components/pages/Auth/Auth";
+import Profil from "./src/components/pages/Profil/Profil";
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <View style={styles.container}>
-      <Text style={{fontSize:35}}>Hello !!</Text>
-      <Button onPress={() => alert("Clique!")} title="Clique moi"></Button>
+      {user === null ? <Auth /> : <Profil />}
       <StatusBar style="auto" />
     </View>
   );
@@ -13,12 +17,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    width:"80%",
+    width: "100%",
     margin: 10,
     flex: 1,
-    backgroundColor: 'teal',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "teal",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
