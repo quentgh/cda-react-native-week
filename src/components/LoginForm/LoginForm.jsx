@@ -1,46 +1,37 @@
 import { useState } from "react";
-import { Keyboard, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
-
-// function isEmailValid(email) {
-//   return email.includes("@") && email.includes(".");
-// }
-
-// function isPasswordValid(password) {
-//   return password.length >= 6;
-// }
+import Btn from "../../ui/Btn/Btn";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function LoginForm() {
+  // 1. Variables d'état
   const [emailInput, setEmailInput] = useState("");
-  // const [emailError, setEmailError] = useState("");
+  const [emailError, setEmailError] = useState();
 
   const [passwordInput, setPasswordInput] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState();
 
-  function handleEmail(e) {
-    return setEmailInput(e.emailInput);
+  // 2. Fonction handle pour mettre à jour les entrées
+  function handleEmail(txt) {
+    return setEmailInput(txt);
   }
 
-  function handlePassword(e) {
-    return setPasswordInput(e.passwordInput);
+  function handlePassword(txt) {
+    return setPasswordInput(txt);
   }
 
-  function testAlert(){
-    alert("Envoi de : " + emailInput + " " + passwordInput);
+  function login() {
+    setEmailError(!emailInput.includes("@") ? "Email incorrect" : "");
+    setPasswordError(passwordInput.length < 6 ? "Mot de passe trop court" : "");
+
+    if (emailInput.includes("@") && passwordInput.length >= 6) {
+      alert("Envoi de : " + emailInput + " " + passwordInput);
+      return;
+    }
   }
 
-  // function validate() {
-  //   setEmailError(!isEmailValid(emailInput) ? "Email incorrecte!" : "");
-  //   setPasswordError(
-  //     !isPasswordValid(passwordInput) ? "Mot de passe trop court!" : ""
-  //   );
-
-  //   if (isEmailValid(emailInput) && isPasswordValid(passwordInput)) {
-  //     alert("Connexion success : Email: " + emailInput);
-  //     return;
-  //   }
-  // }
-
+  // Lier données et composants
   return (
     <View>
       <Text style={{ margin: 20 }}>Login form</Text>
@@ -49,19 +40,21 @@ export default function LoginForm() {
         value={emailInput}
         onChangeText={handleEmail}
         placeholder="email"
+        keyboardType="email-address"
       ></TextInput>
+      <Text>{emailError}</Text>
       <TextInput
         style={styles.input}
         secureTextEntry={true}
         value={passwordInput}
         onChangeText={handlePassword}
         placeholder="password"
+        keyboardType="default"
       ></TextInput>
-      <TouchableOpacity style={styles.connexionButton}>
-        <Text style={styles.connexionButtonText} onPress={testAlert}>
-          {"Connexion"}
-        </Text>
-      </TouchableOpacity>
+      <Text>{passwordError}</Text>
+      <Btn action={login} label={"Se connecter"}>
+        <AntDesign name="login" size={24} color="black" />
+      </Btn>
     </View>
   );
 }

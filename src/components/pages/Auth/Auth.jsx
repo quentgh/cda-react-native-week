@@ -5,6 +5,7 @@ import LoginForm from "../../LoginForm/LoginForm";
 import SignUpForm from "../../SignUpForm/SignUpForm";
 import { StyleSheet, View, Text } from "react-native";
 
+
 const card = {
   title: "Bienvenu !",
   content:"Veuillez vous authentifier",
