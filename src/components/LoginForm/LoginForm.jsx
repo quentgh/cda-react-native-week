@@ -17,16 +17,16 @@ export default function LoginForm() {
   const [passwordInput, setPasswordInput] = useState("");
   // const [passwordError, setPasswordError] = useState("");
 
-  function handleEmail() {
-    setEmailInput(value);
+  function handleEmail(e) {
+    return setEmailInput(e.emailInput);
   }
 
-  function handlePassword() {
-    setPasswordInput(value);
+  function handlePassword(e) {
+    return setPasswordInput(e.passwordInput);
   }
 
   function testAlert(){
-    alert("Envoi de : " + {emailInput} + " " + {passwordInput});
+    alert("Envoi de : " + emailInput + " " + passwordInput);
   }
 
   // function validate() {
