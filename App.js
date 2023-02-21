@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Auth from "./src/Components/Pages/Auth/Auth";
-import Profil from "./src/Components/Pages/Profil/Profil";
+import Auth from "./src/components/pages/Auth/Auth";
+import Profil from "./src/components/pages/Profil/Profil";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -17,14 +17,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    flex: 1,
-    backgroundColor: "teal",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    paddingTop: 50,
   },
 });
-
-// 1er : les composants natifs
-// 2d : les événements
-// 2e : le style : inline style, stylesheet
