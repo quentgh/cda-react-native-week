@@ -4,6 +4,7 @@ import { TextInput } from "react-native";
 import Btn from "../../ui/Btn/Btn";
 import { AntDesign } from "@expo/vector-icons";
 import InputWithError from "../../ui/InputWithError/InputWithError";
+import { color } from "../../styles/color";
 
 export default function LoginForm() {
   // 1. Variables d'état
@@ -52,7 +53,7 @@ export default function LoginForm() {
         errorMsg={passwordError}
       ></InputWithError>
       <Btn action={login} label={"Se connecter"}>
-        <AntDesign name="login" size={24} color="black" />
+        <AntDesign name="login" size={24} color={color.lightColor}/>
       </Btn>
     </View>
   );

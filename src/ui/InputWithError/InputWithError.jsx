@@ -1,8 +1,7 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { useState } from "react";
-// import eye from "../../../assets/eye-solid.svg";
-// import eyeSlash from "../../../assets/eye-slash-solid.svg";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function InputWithError({
   value,
@@ -12,22 +11,32 @@ export default function InputWithError({
   errorMsg,
   isPassword,
 }) {
-  //   const [isPasswordShow, setIsPasswordShow] = useState(true);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
-  //   function togglePasseword() {
-  //     setIsPasswordShow(!isPasswordShow);
-  //   }
+  function togglePasseword() {
+    setIsPasswordHidden(!isPasswordHidden);
+  }
 
   return (
     <View>
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-        value={value}
-        keyboardType={keyboardType}
-        secureTextEntry={isPassword}
-      ></TextInput>
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder={placeholder}
+          onChangeText={onChangeText}
+          value={value}
+          keyboardType={keyboardType}
+          secureTextEntry={isPassword && isPasswordHidden}
+        ></TextInput>
+        {isPassword && (
+          <TouchableOpacity onPress={togglePasseword}>
+            {/* <AntDesign name="eye" size={24} color="teal" /> */}
+            <Text style={styles.showPwd}>Show/Hide password</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {/* le " && "" est utilisé ici dans notre ternaire pour éviter d'ajouter le " : null " */}
       <Text style={styles.error}>{errorMsg}</Text>
     </View>
   );
@@ -42,10 +51,13 @@ const styles = StyleSheet.create({
   },
 
   error: {
+    padding: 8,
     color: "tomato",
   },
 
-//   img: {
-//     width: 20,
-//   },
+  showPwd: {
+    paddingHorizontal: 20,
+    display: "flex",
+    alignSelf: "flex-end",
+  },
 });

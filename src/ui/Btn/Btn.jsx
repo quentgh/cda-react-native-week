@@ -5,7 +5,8 @@ export default function Btn({ action, children, label }) {
   return (
     <TouchableOpacity style={styles.connexionButton} onPress={action}>
       <View>{children}</View>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.label}>
+      {label}</Text>
     </TouchableOpacity>
   );
 }
