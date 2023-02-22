@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import Btn from "../../ui/Btn/Btn";
 import { AntDesign } from "@expo/vector-icons";
+import InputWithError from "../../ui/InputWithError/InputWithError";
 
 export default function LoginForm() {
   // 1. Variables d'état
@@ -34,24 +35,22 @@ export default function LoginForm() {
   // Lier données et composants
   return (
     <View>
-      <Text style={{ margin: 20 }}>Login form</Text>
-      <TextInput
-        style={styles.input}
+      <Text style={styles.title}>Login form</Text>
+      <InputWithError
         value={emailInput}
         onChangeText={handleEmail}
         placeholder="email"
         keyboardType="email-address"
-      ></TextInput>
-      <Text>{emailError}</Text>
-      <TextInput
-        style={styles.input}
-        secureTextEntry={true}
+        errorMsg={emailError}
+      ></InputWithError>
+      <InputWithError
+        isPassword={true}
         value={passwordInput}
         onChangeText={handlePassword}
         placeholder="password"
         keyboardType="default"
-      ></TextInput>
-      <Text>{passwordError}</Text>
+        errorMsg={passwordError}
+      ></InputWithError>
       <Btn action={login} label={"Se connecter"}>
         <AntDesign name="login" size={24} color="black" />
       </Btn>
@@ -60,24 +59,8 @@ export default function LoginForm() {
 }
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
+  title: {
     padding: 10,
-  },
-
-  connexionButton: {
-    alignItems: "center",
-    backgroundColor: "royalblue",
-    margin: 20,
-    padding: 10,
-    color: "#eee",
-  },
-
-  connexionButtonText: {
-    color: "#fff",
     fontSize: 20,
-    textAlign: "center",
   },
 });

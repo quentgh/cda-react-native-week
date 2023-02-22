@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { color } from "../../styles/color";
 
 export default function Btn({ action, children, label }) {
   return (
@@ -12,10 +13,10 @@ export default function Btn({ action, children, label }) {
 const styles = StyleSheet.create({
   connexionButton: {
     alignItems: "center",
-    backgroundColor: "royalblue",
+    backgroundColor: color.primaryColor,
     margin: 20,
     padding: 10,
-    color: "#eee",
+    color: color.lightColor,
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color: "whitesmoke",
+    color: color.lightColor,
     textAlign: "center",
     fontSize: 15,
     marginHorizontal: 10,
