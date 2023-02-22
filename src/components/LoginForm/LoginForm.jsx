@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { TextInput } from "react-native";
 import Btn from "../../ui/Btn/Btn";
 import { AntDesign } from "@expo/vector-icons";
 import InputWithError from "../../ui/InputWithError/InputWithError";
 import { color } from "../../styles/color";
+import {
+  validateEmail,
+  validatePassword,
+  getEmailError,
+  getPasswordError,
+} from "../../utils/validations";
 
 export default function LoginForm() {
   // 1. Variables d'état
@@ -24,11 +29,11 @@ export default function LoginForm() {
   }
 
   function login() {
-    setEmailError(!emailInput.includes("@") ? "Email incorrect" : "");
-    setPasswordError(passwordInput.length < 6 ? "Mot de passe trop court" : "");
+    setEmailError(getEmailError(emailInput));
+    setPasswordError(getPasswordError(passwordInput));
 
-    if (emailInput.includes("@") && passwordInput.length >= 6) {
-      alert("Envoi de : " + emailInput + " " + passwordInput);
+    if (validateEmail(emailInput) && validatePassword(passwordInput)) {
+      alert("connexion succeed !");
       return;
     }
   }
@@ -52,8 +57,8 @@ export default function LoginForm() {
         keyboardType="default"
         errorMsg={passwordError}
       ></InputWithError>
-      <Btn action={login} label={"Se connecter"}>
-        <AntDesign name="login" size={24} color={color.lightColor}/>
+      <Btn action={login} label={"Connexion"}>
+        <AntDesign name="login" size={24} color={color.lightColor} />
       </Btn>
     </View>
   );
