@@ -6,36 +6,39 @@ import SignUpForm from "../../SignUpForm/SignUpForm";
 import { StyleSheet, View, Text } from "react-native";
 
 const card = {
-  title: "Bienvenu !",
-  content: "Veuillez vous authentifier",
+  title: "Welcome !",
+  content: "Please log in",
 };
 
 export default function Auth() {
-  const [login, isLogin] = useState(true);
+  // Les useState, useEffect... doivent être déclaré à l'int. du composant
+  const [login, setIsLogin] = useState(true);
 
   function toggleLogin() {
-    isLogin(!login);
+    setIsLogin(!login);
   }
 
   return (
-    <View>
-      <Card title={card.title} content={card.content}>
-        <View>
+    <View style={styles.container}>
+      <Card title={card.title} content={login ? "Login" : "Subscribe"}>
         {login ? <LoginForm /> : <SignUpForm />}
         <TouchableOpacity style={styles.button} onPress={toggleLogin}>
-          <Text>Pas encore inscrit ?</Text>
+          <Text> {login ? "Not a member yet ? Subscribe here" : "Login"}</Text>
         </TouchableOpacity>
-      </View>
       </Card>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+    paddingBottom: 100,
+  },
+
   button: {
     alignItems: "center",
-    backgroundColor: "#ddd",
-    margin:20,
+    margin: 20,
     padding: 10,
     color: "#333",
   },
