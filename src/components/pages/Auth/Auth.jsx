@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 import Card from "../../HOC/Card/Card";
 import LoginForm from "../../LoginForm/LoginForm";
 import SignUpForm from "../../SignUpForm/SignUpForm";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text } from "react-native";
 
 const card = {
   title: "Welcome !",
@@ -19,21 +19,21 @@ export default function Auth() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Card title={card.title} content={login ? "Login" : "Subscribe"}>
         {login ? <LoginForm /> : <SignUpForm />}
         <TouchableOpacity style={styles.button} onPress={toggleLogin}>
           <Text> {login ? "Not a member yet ? Subscribe here" : "Login"}</Text>
         </TouchableOpacity>
       </Card>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
-    paddingBottom: 100,
+    paddingBottom: 300,
   },
 
   button: {
