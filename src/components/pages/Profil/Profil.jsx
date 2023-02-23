@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import Card from "../../HOC/Card/Card";
 import defaultImage from "../../../../assets/johnDoe-avatar-cadet-blue.png";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 
 const card = {
   title: "Your profil",
@@ -13,6 +14,13 @@ const card = {
 
 export default function Profil() {
   const { utilisateur, setUtilisateur } = useContext(UserContext);
+
+  async function openLibrary() {
+    let result = await ImagePicker.launchImageLibraryAsync();
+    if (!result.canceled) {
+      setUtilisateur({ ...utilisateur, avatar: result.assets[0] });
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -23,8 +31,8 @@ export default function Profil() {
             source={utilisateur.avatar ? utilisateur.avatar : defaultImage}
           />
           <View style={styles.btn}>
-            <TouchableOpacity>
-            <MaterialIcons name="photo-library" size={35} color="cadetblue" />
+            <TouchableOpacity onPress={openLibrary}>
+              <MaterialIcons name="photo-library" size={35} color="cadetblue" />
             </TouchableOpacity>
             <TouchableOpacity>
               <Feather name="camera" size={35} color="cadetblue" />
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 8,
     backgroundColor: "#5F9EA0",
-    borderRadius:4,
+    borderRadius: 4,
   },
 
   userZoneLabel: {
@@ -87,22 +95,23 @@ const styles = StyleSheet.create({
   img: {
     display: "flex",
     alignSelf: "center",
-    resizeMode: "contain",
+    // resizeMode: "contain", on met un border radius pour avoir un rond
     width: 140,
     height: 140,
     margin: 8,
     padding: 10,
+    borderRadius:90,
   },
 
   btn: {
     width: 300,
     margin: 10,
-    padding:12,
+    padding: 12,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
     alignSelf: "center",
-    backgroundColor:"hsl(0, 0%, 90%)",
-    borderRadius:4,
+    backgroundColor: "hsl(0, 0%, 90%)",
+    borderRadius: 4,
   },
 });
