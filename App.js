@@ -5,6 +5,8 @@ import { ScrollView } from "react-native";
 import { UserContext } from "./src/components/contexts/UserContext";
 import Auth from "./src/components/pages/Auth/Auth";
 import Profil from "./src/components/pages/Profil/Profil";
+import ProfilStack from "./src/components/stacks/ProfilStack";
+import { NavigationContainer } from "@react-navigation/native";
 // import defaultImage from "./assets/perso-avatar-cadet-blue.png";
 
 export default function App() {
@@ -22,10 +24,12 @@ export default function App() {
     <UserContext.Provider
       value={{ utilisateur: user, setUtilisateur: setUser }}
     >
-      <ScrollView style={styles.container}>
-        {user === null ? <Auth /> : <Profil />}
-        <StatusBar style="auto" />
-      </ScrollView>
+      <NavigationContainer>
+        <View style={styles.container}>
+          {user === null ? <Auth /> : <ProfilStack />}
+          <StatusBar style="auto" />
+        </View>
+      </NavigationContainer>
     </UserContext.Provider>
   );
 }
@@ -33,6 +37,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
-    paddingBottom: 100,
+    // paddingBottom: 100,
+    flex: 1,
   },
 });

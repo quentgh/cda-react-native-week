@@ -1,4 +1,11 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Text,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import Card from "../../HOC/Card/Card";
@@ -12,7 +19,7 @@ const card = {
   content: "with your personal informations",
 };
 
-export default function Profil() {
+export default function Profil(props) {
   const { utilisateur, setUtilisateur } = useContext(UserContext);
 
   async function openLibrary() {
@@ -22,8 +29,12 @@ export default function Profil() {
     }
   }
 
+  function goToCam(){
+    return props.navigation.navigate("camera");
+  }
+
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={{paddingBottom:100}} style={styles.container}>
       <Card title={card.title} content={card.content}>
         <View>
           <Image
@@ -34,7 +45,7 @@ export default function Profil() {
             <TouchableOpacity onPress={openLibrary}>
               <MaterialIcons name="photo-library" size={35} color="cadetblue" />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={goToCam}>
               <Feather name="camera" size={35} color="cadetblue" />
             </TouchableOpacity>
           </View>
@@ -58,14 +69,15 @@ export default function Profil() {
           </View>
         </View>
       </Card>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
-    paddingBottom: 100,
+
+    
   },
 
   title: {
@@ -100,7 +112,7 @@ const styles = StyleSheet.create({
     height: 140,
     margin: 8,
     padding: 10,
-    borderRadius:90,
+    borderRadius: 90,
   },
 
   btn: {
@@ -115,3 +127,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
 });
+
+// 3 modes de navigation :
+// Navigation en stack (un composant avec d'autres composants à l'intérieur)
+// Navigation en Drawer (en tiroire)
+// Navigation en Tab (en onglet)
