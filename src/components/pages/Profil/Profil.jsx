@@ -16,7 +16,7 @@ import * as ImagePicker from "expo-image-picker";
 
 const card = {
   title: "Your profil",
-  content: "with your personal informations",
+  content: "with personal informations",
 };
 
 export default function Profil(props) {
@@ -76,8 +76,6 @@ export default function Profil(props) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
-
-    
   },
 
   title: {

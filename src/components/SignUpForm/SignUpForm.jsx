@@ -1,5 +1,11 @@
 import { useContext, useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import Btn from "../../ui/Btn/Btn";
 import { AntDesign } from "@expo/vector-icons";
 import InputWithError from "../../ui/InputWithError/InputWithError";
@@ -77,46 +83,50 @@ export default function SignUpForm() {
 
   // Lier données et composants
   return (
-    <View>
-      <Text style={styles.title}>Sign Up form</Text>
-      <InputWithError
-        value={usernameInput}
-        onChangeText={handleUsername}
-        placeholder="username"
-        keyboardType="email-address"
-        errorMsg={usernameError}
-      ></InputWithError>
-      <InputWithError
-        value={emailInput}
-        onChangeText={handleEmail}
-        placeholder="email"
-        keyboardType="email-address"
-        errorMsg={emailError}
-      ></InputWithError>
-      <InputWithError
-        isPassword={true}
-        value={passwordInput}
-        onChangeText={handlePassword}
-        placeholder="password"
-        keyboardType="default"
-        errorMsg={passwordError}
-      ></InputWithError>
-      <InputWithError
-        isPassword={true}
-        value={confirmPwd}
-        onChangeText={handleConfirmPwd}
-        placeholder="password"
-        keyboardType="default"
-        errorMsg={confirmPwdError}
-      ></InputWithError>
-      <Btn action={signUp} label={"Inscription"}>
-        <AntDesign name="login" size={24} color={color.lightColor} />
-      </Btn>
-    </View>
+      <View>
+        <Text style={styles.title}>Sign Up form</Text>
+        <InputWithError
+          value={usernameInput}
+          onChangeText={handleUsername}
+          placeholder="username"
+          keyboardType="email-address"
+          errorMsg={usernameError}
+        ></InputWithError>
+        <InputWithError
+          value={emailInput}
+          onChangeText={handleEmail}
+          placeholder="email"
+          keyboardType="email-address"
+          errorMsg={emailError}
+        ></InputWithError>
+        <InputWithError
+          isPassword={true}
+          value={passwordInput}
+          onChangeText={handlePassword}
+          placeholder="password"
+          keyboardType="default"
+          errorMsg={passwordError}
+        ></InputWithError>
+        <InputWithError
+          isPassword={true}
+          value={confirmPwd}
+          onChangeText={handleConfirmPwd}
+          placeholder="password"
+          keyboardType="default"
+          errorMsg={confirmPwdError}
+        ></InputWithError>
+          <Btn action={signUp} label={"Inscription"}>
+            <AntDesign name="login" size={24} color={color.lightColor} />
+          </Btn>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+
   title: {
     padding: 10,
     fontSize: 20,

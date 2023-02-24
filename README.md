@@ -23,3 +23,17 @@ With CMD tool from "my-app" repo :
     npx expo install react-native-gesture-handler
     
     npx expo install react-native-safe-area-context
+
+
+### Next - add this librairy to use phone camera
+
+    npx expo install expo-camera
+
+
+### Install yarn
+
+    npm install --global yarn
+    
+then, delete node_modules repo
+    
+    yarn install
