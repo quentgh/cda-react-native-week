@@ -4,9 +4,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native";
 import { UserContext } from "./src/components/contexts/UserContext";
 import Auth from "./src/components/pages/Auth/Auth";
-import Profil from "./src/components/pages/Profil/Profil";
-import ProfilStack from "./src/components/stacks/ProfilStack";
+// import Profil from "./src/components/pages/Profil/Profil";
+// import ProfilStack from "./src/components/stacks/ProfilStack";
 import { NavigationContainer } from "@react-navigation/native";
+import GlobalDrawer from "./src/components/Drawer/GlobalDrawer/GlobalDrawer";
 // import defaultImage from "./assets/perso-avatar-cadet-blue.png";
 
 export default function App() {
@@ -24,12 +25,13 @@ export default function App() {
     <UserContext.Provider
       value={{ utilisateur: user, setUtilisateur: setUser }}
     >
-      <NavigationContainer>
-        <View style={styles.container}>
-          {user === null ? <Auth /> : <ProfilStack />}
+      <View style={styles.container}>
+        <NavigationContainer>
+          {/* {user === null ? <Auth /> : <ProfilStack />} */}
+          {user ? <GlobalDrawer /> : <Auth />}
           <StatusBar style="auto" />
-        </View>
-      </NavigationContainer>
+        </NavigationContainer>
+      </View>
     </UserContext.Provider>
   );
 }
