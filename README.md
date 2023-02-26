@@ -37,3 +37,12 @@ With CMD tool from "my-app" repo :
 then, delete node_modules repo
     
     yarn install
+
+
+### Install Drawer (navigation)
+
+    expo install @react-navigation/drawer
+
+    npx expo install react-native-gesture-handler@~2.8.0 react-native-reanimated@~2.12.0
+
+    npx expo start -c
