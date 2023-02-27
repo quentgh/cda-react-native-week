@@ -17,16 +17,27 @@ export default function GOT() {
   const [update, setUpdate] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    axios.get(GOT_GET_CHARACTERS_URL).then((reponse) => {
-      setListChar(reponse.data);
-      setIsLoading(false);
-    });
-    return () => {
-      setIsLoading(true);
-      setListChar([]);
-    };
-  }, [update]);
+  useEffect(() =>
+    // Expl with Fetch method
+    // {
+    //   fetch("https://thronesapi.com/api/v2/Characters").then((response) => {
+    //     response.json().then((data) => {
+    //       setListChar(data);
+    //     });
+    //   });
+    // }, []);
+
+    //Expl with Axios method
+    {
+      axios.get(GOT_GET_CHARACTERS_URL).then((response) => {
+        setListChar(response.data);
+        setIsLoading(false);
+      });
+      return () => {
+        setIsLoading(true);
+        setListChar([]);
+      };
+    }, [update]);
 
   if (isLoading) {
     return (
@@ -46,7 +57,7 @@ export default function GOT() {
               style={{ width: 300, height: 300 }}
               source={{ uri: char.imageUrl }}
             />
-            <Text style={styles.charContainer}>{char.title}</Text>
+            <Text style={styles.content}>{char.title}</Text>
           </View>
         );
       })}
@@ -62,22 +73,23 @@ export default function GOT() {
 
 const styles = StyleSheet.create({
   charContainer: {
-    backgroundColor: "rgb(220,220,220)",
+    backgroundColor: "#f8f8f8",
     margin: 20,
     padding: 20,
     borderBottomWidth: 2,
     borderTopWidth: 2,
-    borderColor: "hsl(180,20%,25%)",
+    borderColor: color.secondaryColor,
     maxWidth: 500,
-    alignContent: "center",
+    alignSelf: "center",
   },
   title: {
-    color: "hsl(180,20%,25%)",
+    color: color.thirdColor,
     fontSize: 30,
     fontWeight: "bold",
   },
   content: {
-    color: "hsl(180,20%,25%)",
+    margin: 12,
+    color: color.thirdColor,
     fontSize: 20,
   },
   refreshBtn: {
