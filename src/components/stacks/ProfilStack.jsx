@@ -19,6 +19,7 @@ export default function ProfilStack() {
         component={Profil}
         options={{
           title: "Your profile page",
+          headerShown: false,
         }}
       />
       <Pile.Screen

@@ -19,7 +19,7 @@ export default function App() {
     description: null,
   };
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(userFromDB);
 
   return (
     <UserContext.Provider
